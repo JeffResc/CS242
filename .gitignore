@@ -1,0 +1,8 @@
+# Ignore Java packages
+*.jar
+# Ignore Java executables
+*.class
+# Ignore Eclipse metadata directory
+.metadata/
+# Ignore Eclipse settings directory
+.settings/

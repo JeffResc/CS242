@@ -1,0 +1,70 @@
+(a)
+When the input is "Hello World!", the following snippet of code will output an IOException since the BufferedReader is closed on line 3 before the line is read on line 4. This will output as a system error saying "Issue with IO."
+
+(b)
+When the input is "23", the following snippet of code will output a NumberFormatException since we are inputting "Line read in: 22" into Integer.parseInt(), which is not fully an integer. This will output as a system error saying "Unknown exception" as there is no catch block for NumberFormatException.
+
+(c) 
+When the input is "peter_pecked_peppers_repeatedly", the following snippet of code will output:
+||ter_|
+|cked_|
+|p|
+|rs_re|
+|atedly|
+This is because for every occurance of the delimiter "pe," the line will be surrounded with an "|" on each side, as well as put on a new line due to System.out.println.
+
+(d)
+When the input is "1_Mississippi_2_Mississippi_3_Mississippi", the following snippet of code will output:
+1
+2
+3
+This is because the delimiter "_Mississippi_" splits the input each time that string occurs. Other than that string, only 1, 2 and 3 exist in the string, so the scan.nextInt() should work as the rest of the non-integer string is already gone since it was part of the delimiter.
+
+----------------------------------------------
+
+(a)
+1.) public abstract class Person
+2.) public class Student extends Person
+3.) public class OncampusStudent extends Student
+4.) public class DistanceStudent extends Student
+
+(b)
+Line 8.) This would create a compile error since you are creating a variable of type Student, but using the constructor for DistanceStudent.
+Line 10.) This is similar to the error on line 8, but not exactly the same. This tries to create a variable of type Person, but uses the Student class constructor. This is not allowed since the variable type and return type of the constructor are not the same.
+Line 12.) This error stems from the same issue as well. The variable type is Person, but the constructor used returns a variable of FacultyMember. Again, this is not allowed as Person and FacultyMember are two different variable types and cannot be assigned a value from the other variable type.
+Line 18.) This will error since line 8 has been removed and a3 does not exist. If line 8 was not removed, this line is syntactically correct and would be fine.
+Line 23.) This will error since line 10 has been removed and a4 does not exist. If line 10 was not removed, this line is syntactically correct and would be fine.
+
+(c)
+Line 18.) Line removed, this was because it was a comparison between a2 of line 6 and a4 of line 10, but since line 10 was removed in a previous step, there is no a4 variable to compare, resulting in a compile-time error.
+Line 23.) This line was removed as well since it was a comparison between a2 of line 6 and a4 of line 10, but since line 10 was removed in a previous step, there is no a4 variable to compare, resulting in a compile-time error.
+Line 24.) This line will print out true, this is because this because on line 14, a6 and a2 are set to equal each other. 
+Line 25.) This line will print true as well since OncampusStudent a1 has the same parameters set in it's construction as a7.  The equals() method is from OncampusStudent's equals() method, which is passed to it's super, Student's equals() method, which simply compares the four student variables, the same four set in the construction parameters. So since these four are set to the same at construction, they are the same compared in Student's equals() method, which in turn, makes the equals() method return true.
+
+----------------------------------------------
+
+(a)
+public void storeZipFileName(String zipFileName) {
+	if (zipFileName.contains(".")) {
+		Scanner scan = new Scanner(input);
+		scan.useDelimiter(".");
+		String a = "";
+		while(scan.hasNext()) {
+			a = scan.next();
+		}
+		scan.close();
+		if (!a.equalsIgnoreCase("zip")) {
+			throw new ZipException("Unable to store a zipFileName with a file extension other than zip.");
+		}
+	}
+	if (zipFileName.length()-4 < 4) {
+		throw new IllegalArgumentException("Unable to store a zipFileName with a length less than 4 characters.");
+	}
+	this.zipFileName = zipFileName;
+}
+
+(b)
+Yes, the following code will compile since it is syntactically correct, but at runtime, there will be a ZipException since the file name provided on line 5 is a rar, not a zip.
+
+(c)
+The following message will be printed to system error: "Unable to store a zipFileName with a file extension other than zip."
